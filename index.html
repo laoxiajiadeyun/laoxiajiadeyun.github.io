@@ -855,72 +855,22 @@
 
       
         
-          
-            <h2 id="Git学习-一-初始化、添加文件、版本回退"><a href="#Git学习-一-初始化、添加文件、版本回退" class="headerlink" title="Git学习(一):初始化、添加文件、版本回退"></a>Git学习(一):初始化、添加文件、版本回退</h2><p>[TOC]</p>
+          <h2 id="Git学习-一-初始化、添加文件、版本回退"><a href="#Git学习-一-初始化、添加文件、版本回退" class="headerlink" title="Git学习(一):初始化、添加文件、版本回退"></a>Git学习(一):初始化、添加文件、版本回退</h2><p>[TOC]</p>
 <blockquote>
 <h3 id="初始化一个仓库"><a href="#初始化一个仓库" class="headerlink" title="初始化一个仓库"></a>初始化一个仓库</h3></blockquote>
 <p>初始化一个Git仓库，使用<code>git init</code>命令。在cmder软件下初始化git后，目录后面会多出这么一串字符==(master -&gt; origin)==</p>
 <p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576754.png" alt="1544027681330"></p>
-<p>切换到非Git仓库路径时，后面是没有这串字符的</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576756.png" alt="1544027786636"></p>
-<p>会在当前目录下生成一个<code>.git</code> 文件夹</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576758.png" alt="1544027465658"></p>
-<p>若想取消初始化，删除改文件夹即可 <code>rm -rf .git</code> ，删除后git目录后面的 (master -&gt; origin) 也不见了</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576762.png" alt="1544027571167"></p>
-<blockquote>
-<h3 id="添加文件到Git仓库"><a href="#添加文件到Git仓库" class="headerlink" title="添加文件到Git仓库"></a>添加文件到Git仓库</h3></blockquote>
-<p>首先创建一个文本文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim test.txt</span><br></pre></td></tr></table></figure>
-<p>内容为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello Git!</span><br></pre></td></tr></table></figure>
-<p>这里发现，当Git仓库内增加了文件时，cmder目录后面显示的字符串颜色发生了变化</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576764.png" alt="1544028245245"></p>
-<p>接下来添加到Git仓库，分两步：</p>
-<ol>
-<li><p>使用命令<code>git add &lt;filename&gt;</code>，注意，可反复多次使用，添加多个文件；</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576770.png" alt="1544028915732"></p>
-</li>
-<li><p>使用命令<code>git commit -m &lt;message&gt;</code>，完成。（message为提交文件的描述信息，以便获知变更内容）</p>
-<p>如图，提交成功，同时在cmder软件下，提交后目录名后面的字符串颜色变回原来的白色</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576787.png" alt="1544029030156"></p>
-</li>
-</ol>
-<p><code>git status</code>命令可以让我们时刻掌握仓库当前的状态</p>
-<p>修改文件信息，第二行添加内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This twoline</span><br></pre></td></tr></table></figure>
-<p>然后执行 <code>git status</code>查看仓库状态</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576789.png" alt="1544029325662"></p>
-<p>然后将文件改动提交，再次查看</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576790.png" alt="1544029585007"></p>
-<p><em>==这里可以发现cmder这个软件会自动判断Git仓库的文件状态，在提交后目录后面的字符串又变回了无变化的白色==</em></p>
-<p>如果想查看具体修改了什么内容需要用<code>git diff</code>这个命令</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576792.png" alt="1544029733286"></p>
-<p>这里没有显示信息是因为我们已经提交过了</p>
-<p>进入文件将刚才加入的第二行内容删除后再次查看</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576794.png" alt="1544029834008"></p>
-<p>前面有个<code>-</code> 表示第二行的内容被删除</p>
-<blockquote>
-<h3 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h3></blockquote>
-<p>在Git中，我们可以用<code>git log</code>命令查看历史版本信息<br><code>git log</code>命令显示从最近到最远的提交日志</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576796.png" alt="1544030046794"></p>
-<p>图中一大串类似<code>97d9e...</code>的是<code>commit id</code>（版本号），是一个SHA1计算出来的一个非常大的数字，用十六进制表示</p>
-<p>这里如果嫌输出信息太多，可以试试加上<code>--pretty=oneline</code>参数，每次提交只显示一行内容</p>
-<p>这里我们先把刚刚删除的操作提交再加上<code>--pretty=oneline</code>参数查看：</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576799.png" alt="1544030173245"></p>
-<p><code>HEAD</code>  指的是最近一次的提交，所以这里 <code>HEAD</code> 变成了刚刚的这次提交</p>
-<p>同时，上一个版本就是<code>HEAD^</code>，上上一个版本就是<code>HEAD^^</code>，当然往上100个版本写100个<code>^</code>太过麻烦，所以写成<code>HEAD~100</code></p>
-<p>回退版本之前我们先随便添加一些内容在test.txt文件中提交：</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576802.png" alt="1544030956487"></p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576803.png" alt="1544031210727"></p>
-<p>接下来我们使用使用<code>git reset --head HEAD^^</code>命令来回退test.txt文件到上一个版本：</p>
-<p><img src="http://blogs-pic.oss-cn-beijing.aliyuncs.com/小书匠/2018-12-6_1544063576806.png" alt="1544031821893"></p>
-<p>==<strong>git reset 用法如下：</strong>==</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">用法：git reset [--mixed | --soft | --hard | --merge | --keep] [-q] [&lt;提交&gt;]</span><br><span class="line">  或：git reset [-q] [&lt;树或提交&gt;] [--] &lt;路径&gt;...</span><br><span class="line">  或：git reset --patch [&lt;树或提交&gt;] [--] [&lt;路径&gt;...]</span><br><span class="line"></span><br><span class="line">    -q, --quiet           安静模式，只报告错误</span><br><span class="line">    --mixed               重置 HEAD 和索引</span><br><span class="line">    --soft                只重置 HEAD</span><br><span class="line">    --hard                重置 HEAD、索引和工作区</span><br><span class="line">    --merge               重置 HEAD、索引和工作区</span><br><span class="line">    --keep                重置 HEAD 但保存本地变更</span><br><span class="line">    --recurse-submodules[=&lt;reset&gt;]</span><br><span class="line">                          control recursive updating of submodules</span><br><span class="line">    -p, --patch           交互式挑选数据块</span><br><span class="line">    -N, --intent-to-add   将删除的路径标记为稍后添加</span><br></pre></td></tr></table></figure>
-
-          
+<p>切换到非Git仓库路径时，后面是没有这串字符的<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/05/git学习/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
     
     
     
